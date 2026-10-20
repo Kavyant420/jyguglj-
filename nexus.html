@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus · PIK IDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="nexus.css">
+</head>
+<body>
+<div class="nx" id="nx">
+
+  <section class="nx-agent" aria-label="Nexus agent">
+    <header class="nx-bar">
+      <h1 class="nx-title">Nexus</h1>
+      <label><span class="sr">Model</span><select id="model" class="nx-select"></select></label>
+      <button class="btn btn--ghost" id="clear" type="button">Clear</button>
+    </header>
+    <div class="nx-msgs" id="msgs" role="log" aria-live="polite"></div>
+    <form class="nx-composer" id="composer">
+      <textarea id="prompt" rows="1" placeholder="Ask Nexus to write or fix code" aria-label="Message"></textarea>
+      <div class="nx-composer__row">
+        <button class="btn btn--ghost" id="share" type="button" aria-pressed="true">Share editor</button>
+        <button class="btn btn--primary" id="send" type="submit">Send</button>
+      </div>
+    </form>
+  </section>
+
+  <div class="nx-split" data-split="agent" role="separator" aria-orientation="vertical"
+       aria-label="Resize agent panel (arrow keys)" tabindex="0"></div>
+
+  <section class="nx-ide" aria-label="PIK IDE">
+    <header class="nx-bar">
+      <span class="nx-tab">main.html</span>
+      <div class="nx-actions">
+        <button class="btn btn--primary" id="run" type="button" title="Ctrl/Cmd + Enter">Run</button>
+        <button class="btn btn--ghost" id="copy" type="button">Copy</button>
+        <button class="btn btn--ghost" id="wipe" type="button">Clear</button>
+        <button class="btn btn--ghost" id="maxide" type="button" aria-pressed="false">Maximize IDE</button>
+        <button class="btn btn--ghost" id="reset" type="button">Reset layout</button>
+      </div>
+    </header>
+
+    <div class="nx-editor">
+      <pre class="nx-gutter" id="gutter" aria-hidden="true">1</pre>
+      <textarea id="code" spellcheck="false" wrap="off" aria-label="Code editor"></textarea>
+    </div>
+
+    <div class="nx-split nx-split--h" data-split="editor" role="separator" aria-orientation="horizontal"
+         aria-label="Resize editor and preview (arrow keys)" tabindex="0"></div>
+
+    <div class="nx-out">
+      <div class="nx-out__bar">Preview <span id="status" aria-live="polite"></span></div>
+      <iframe id="out" sandbox="allow-scripts" title="Preview"></iframe>
+    </div>
+  </section>
+
+</div>
+<script src="nexus.js"></script>
+</body>
+</html>
